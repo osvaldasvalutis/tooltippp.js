@@ -255,7 +255,7 @@
 						optionPosY 			= getOption( 'posY' ),
 						optionGapViewport	= getOption( 'gapViewport' ),
 						optionGapBetween	= getOption( 'gapBetween' ),
-						isZone				= $zone.selector.toLowerCase() != 'body' && $zone.css( 'position' ) != 'static',
+						isZone				= getOption( 'zone' ) != 'body' && $zone.css( 'position' ) != 'static',
 						tooltipResetWidth	= function()
 						{
 							$tooltip.css( 'width', 'auto' );
