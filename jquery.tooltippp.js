@@ -1,4 +1,3 @@
-
 ;( function( $, window, document, undefined )
 {
 	'use strict';
@@ -66,7 +65,7 @@
 			if( animDuration != undefined && animDuration != '0s' )
 			{
 				$el.on( eAnimEnd, function()
-				{ 
+				{
 					$el.off( eAnimEnd );
 					callback();
 				});
@@ -74,7 +73,7 @@
 			else if( transDuration != undefined && transDuration != '0s' )
 			{
 				$el.on( eTransEnd, function()
-				{ 
+				{
 					$el.off( eTransEnd );
 					callback();
 				});
@@ -206,7 +205,7 @@
 						hideOnSelfClick:	false,
 						hideOnDocClick:		false,
 						hideOnEscPress:		false,
-						showTimeout:		0,						
+						showTimeout:		0,
 						hideTimeout:		0,				// on mouseenter event
 						cssClassName:		'tooltippp',
 						cssShowClass:		false,
