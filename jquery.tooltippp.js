@@ -84,7 +84,8 @@
 		makeShowEvent = function( eventName )
 		{
 			if( eventName === false ) return false;
-			eventName = ( eventName == 'mouseenter' ? ( 'pointerup MSPointerUp touchend mouseenter' ) : eventName ).split( ' ' ),
+            eventName = eventName.replace( 'mouseenter', 'pointerup MSPointerUp touchend mouseenter' ).split( ' ' );
+            //eventName = ( eventName == 'mouseenter' ? ( 'pointerup MSPointerUp touchend mouseenter' ) : eventName ).split( ' ' ),
 			$.each( eventName, function( i, val )
 			{
 				if( val != '' ) eventName[ i ] = val + '.tooltippp';
@@ -93,7 +94,8 @@
 		},
 		makeHideEvent = function( eventName )
 		{
-			eventName = eventName.split( ' ' ),
+            eventName = eventName.replace( 'mouseleave', 'pointerup MSPointerUp touchend mouseleave' ).split( ' ' );
+			//eventName = eventName.split( ' ' ),
 			$.each( eventName, function( i, val )
 			{
 				if( val != '' ) eventName[ i ] = val + '.tooltipppEventHide';
@@ -478,12 +480,15 @@
 
 					if( getOption( 'eventHide' ))
 					{
-						var targetEventHide = makeHideEvent( getOption( 'eventHide' ));
-						$target.on( targetEventHide, function()
-						{
-							$target.off( targetEventHide );
-							removeTooltip();
-						});
+                        setTimeout(function() // prevents removeTooltip() firing right after addTooltip()
+                        {
+    						var targetEventHide = makeHideEvent( getOption( 'eventHide' ));
+    						$target.on( targetEventHide, function(e)
+    						{
+    							$target.off( targetEventHide );
+    							removeTooltip();
+    						});
+                        }, 10);
 					}
 
 					if( touchSupport && wasTouched( e ))
@@ -570,6 +575,7 @@
 					{
 						$target.on( eventShow, function( e )
 						{
+                            // TODO: make this fire only once when eventShow hosts multiple event types
 							titleAttr	= $target.attr( 'title' );
 							showTO		= setTimeout( function()
 							{
@@ -625,7 +631,7 @@
 			});
 
 
-			$document.on( 'click', function( e )
+			$document.on( 'click touchend', function( e ) // TODO: check why iOS is not firing "click"
 			{
 				if( !$tooltip ) return true;
 				if( getOption( 'hideOnDocClick' ) || $tooltip.data( 'touchSupport' ) === true && wasTouched( e ))
