@@ -1,0 +1,27 @@
+{
+  "name": "tooltippp.js",
+  "version": "1.0.0",
+  "description": "The tooltip you have always wished for.",
+  "main": "jquery.tooltippp.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/osvaldasvalutis/tooltippp.js.git"
+  },
+  "author": "Osvaldas Valutis",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/osvaldasvalutis/tooltippp.js/issues"
+  },
+  "homepage": "https://github.com/osvaldasvalutis/tooltippp.js",
+  "keywords": [
+    "tooltip",
+    "touch",
+    "jquery",
+    "javascript",
+    "simple",
+    "lightweight"
+  ]
+}
